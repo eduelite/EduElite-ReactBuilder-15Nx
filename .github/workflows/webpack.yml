@@ -23,7 +23,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Build
-      run: |
-        export NODE_OPTIONS=--openssl-legacy-provider
+      run: |        
         npm install        
+        export NODE_OPTIONS=--openssl-legacy-provider
         npm run start
