@@ -26,4 +26,4 @@ jobs:
       run: |
         export NODE_OPTIONS=--openssl-legacy-provider
         npm install        
-        npx webpack
+        npm run start
