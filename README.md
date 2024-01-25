@@ -12,5 +12,33 @@ build: (if failer error (unsupport module), then setup before build
 
 deploy to surge
 
+Unique Rule:
 
+(1) in react-app webpack
+new ModuleFederationPlugin({
+        
+          // For remotes (please adjust)
+          name: "react",
+          library: { type: "var", name: "react_youtube" },         // this is the remoteName in Federal Modulation, that must be unique
+          filename: "remoteEntry.js", // <-- Meta Data
+          exposes: {
+              './web-components': './app.js',
+          },        
+          shared: ["react", "react-dom"]
+        }),
+        new CopyWebpackPlugin({
+          patterns: [
+            {
+              from: './*.html'
+            }
+          ]
+        })
+    ],
 
+(2) in host app
+const webComponentOptions:WebComponentWrapperOptions={
+            remoteEntry: 'http://localhost:4204/remoteEntry.js',
+            remoteName: 'react_youtube',                        //this is the react-app webpack library unique name
+            exposedModule: './web-components',
+            elementName: 'react-element'
+        };
