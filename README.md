@@ -40,9 +40,11 @@ new ModuleFederationPlugin({
     
 
 (2) in host app
+<code>
 const webComponentOptions:WebComponentWrapperOptions={
             remoteEntry: 'http://localhost:4204/remoteEntry.js',
             remoteName: 'react_youtube',                        //this is the react-app webpack library unique name
             exposedModule: './web-components',
             elementName: 'react-element'                        //this is the react-app webpack element unique name
         };
+</code>
