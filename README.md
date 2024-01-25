@@ -35,10 +35,14 @@ new ModuleFederationPlugin({
         })
     ],
 
+    customElements.define('react-element', Mfe4Element); //in App.js      react-element must be unique        
+    <react-element></react-element>                      //in index.html
+    
+
 (2) in host app
 const webComponentOptions:WebComponentWrapperOptions={
             remoteEntry: 'http://localhost:4204/remoteEntry.js',
             remoteName: 'react_youtube',                        //this is the react-app webpack library unique name
             exposedModule: './web-components',
-            elementName: 'react-element'
+            elementName: 'react-element'                        //this is the react-app webpack element unique name
         };
