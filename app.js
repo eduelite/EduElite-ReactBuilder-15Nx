@@ -2,9 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import YouTube from 'react-youtube';
 
-class App extends React.Component {
+ const App = (props) => {
+  
+    console.log(props);
 
-  render() {
     const reactVersion = require('./package.json').dependencies['react'];
     
     const opts = {
@@ -28,13 +29,23 @@ class App extends React.Component {
         </p>,        
         
         <YouTube videoId="2g811Eo7K8U" opts={opts}  />        
-    ])
-  }
+    ]);
+  
 }
 
 class Mfe5Element extends HTMLElement {
+  
   connectedCallback() {
-    ReactDOM.render(<App/>, this);
+
+    console.log('data content:');
+    const data = this.getAttribute('data');
+    console.log("get attribute");
+    console.log(data);
+
+    const props = JSON.parse(data);
+    console.log(props);
+
+    ReactDOM.render(<App {...props}/>, this);
   }
 }
 

@@ -18,7 +18,4 @@ remoteEntry: 'https://65b2befc5750852a2ea5cc95--peppy-sable-327a3f.netlify.app/r
 
 C:\Users\jdai\component-develop\react-app
 
-
-
-
 curl -H "Content-Type: application/zip"  -H "Authorization: Bearer nfp_4TLKUiyPFWys4HvH9Yu3Ad5B7nSjDqzm4376"  --data-binary "C:\Users\jdai\component-develop\react-app\dist.zip"  https://api.netlify.com/api/v1/sites
