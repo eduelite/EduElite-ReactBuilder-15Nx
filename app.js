@@ -7,6 +7,14 @@ const App = ({data, onUpdateData}) => {
     const reactVersion = require('./package.json').dependencies['react'];
     
     console.log(data);
+
+    let showDescription = data.component.ui.showDescription;
+
+    // Check if showDescription is null, undefined, an empty string, or 'false'
+    if (showDescription === null || showDescription === undefined || showDescription === '' || showDescription === 'false') {
+      showDescription = false;
+    }
+
     const config = {
       loader: { load: ["input/asciimath"] },
       asciimath: {
@@ -19,11 +27,11 @@ const App = ({data, onUpdateData}) => {
     };
 
     return (
-      <div>
+      <div className="ml-2">
 
-        {data.component.ui.showDescription?( <div dangerouslySetInnerHTML={{ __html: data.component.content.description }} />):<div/>}
+        {showDescription?( <div className="mt-2" dangerouslySetInnerHTML={{ __html: data.component.content.description }} />):<div/>}
         <MathJaxContext config={config}>        
-        <MathJax>{data.component.content.equation}</MathJax>
+        <MathJax>`{data.component.content.equation}`</MathJax>
         </MathJaxContext>
           
       </div>
@@ -59,11 +67,11 @@ class Mfe5Element extends HTMLElement {
       dataJson = {
         component:{
           content: {
-            equation: "`a+b=b+a`",
+            equation: "a+b=b+a*sin(A)",
             description:"This is the test description:"
           },
           ui:{
-            showDescription: true
+            showDescription: 'true'
           }
         },
         runtime:{
@@ -84,4 +92,4 @@ class Mfe5Element extends HTMLElement {
 
 }
 
-customElements.define('react-component660394d5be361e17e019bbb953b4d7602e2b45629777bc72f515f493', Mfe5Element);
+customElements.define('react-component660394d5be361e17e019bbb9249bcf98d31e4b51998f6f02cfe95271', Mfe5Element);
